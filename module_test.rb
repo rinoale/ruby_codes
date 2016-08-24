@@ -19,6 +19,7 @@ module Overwatch
       private
 
       def hanamura
+        puts caller[0]
         puts 'this is private map, hanamura'
       end
 
