@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package greeter;
+
+service Greeter {
+  // Unary: one request message, one response message.
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+
+  // Server streaming: one request, N response messages on the same stream.
+  rpc CountDown (HelloRequest) returns (stream HelloReply) {}
+}
+
+message HelloRequest {
+  string name  = 1;  // wire: field 1, type 2 (length-delimited) -> tag byte 0x0a
+  int32  times = 2;  // wire: field 2, type 0 (varint)           -> tag byte 0x10
+}
+
+message HelloReply {
+  string message = 1;  // tag byte 0x0a
+  int64  count   = 2;  // tag byte 0x10
+}
